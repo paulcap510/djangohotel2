@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .reserve-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 20px;
+    }
+    .reserve-details, .reserve-image {
+        flex: 1;
+        margin: 10px;
+    }
+    .reserve-image img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    .reserve-image {
+        flex: 1;
+        margin: 10px;
+        height: 250px; /* Set a fixed height */
+        overflow: hidden; /* Ensures the image does not exceed the div */
+    }
+    .reserve-image img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+    }
+
+    .form-container {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .card-button {
+        background-color: #004a99;
+        color: #ffdd00;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+        width: 100%;
+    }
+    .card-button:hover {
+        background-color: #ffdd00;
+        color: #004a99;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="reserve-container">
+        <div class="reserve-details">
+            <h2>Reserve Room: {{ room.type }}</h2>
+            <p>Price per Night: ${{ room.price }}</p>
+            <p>Max Guests: {{ room.max_guests }}</p>
+            <p>Check-in Date: {{ checkin_date }}</p>
+            <p>Check-out Date: {{ checkout_date }}</p>
+            <p>Number of Guests: {{ guests }}</p>
+        </div>
+        <div class="reserve-image">
+            <img src="{% if room.image %}{{ room.image.url }}{% else %}{% static 'default_room_image.jpg' %}{% endif %}" alt="Room Image">
+        </div>
+    </div>
+
+    <!-- Styled Reservation Form -->
+    <div class="form-container">
+        <form method="post" action="{% url 'confirm_reservation' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="hidden" name="room_id" value="{{ room.id }}">
+                <input type="text" name="firstname" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="lastname" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="phone" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="TEST_cc_no" placeholder="Credit Card Number" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="TEST_cc_exp" placeholder="Credit Card Expiry" required>
+            </div>
+            <button type="submit" class="card-button">Confirm Reservation</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

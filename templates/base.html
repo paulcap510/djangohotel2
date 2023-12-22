@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Verdana', 'Geneva', sans-serif; 
+        }
+    
+        .navbar-custom {
+            background-color: #004a99;
+        }
+    
+        .navbar-custom .navbar-nav .nav-link {
+            color: white;
+        }
+    
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #ffdd00; 
+        }
+    
+        .navbar-custom .navbar-brand i {
+            color: #ffdd00 !important;
+        }
+    
+        .hero-section {
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+        }
+    
+        footer {
+            background-color: black;
+            color: #ffdd00;
+        }
+    </style>
+    
+
+</head>
+<body>
+    {% comment %} Nav {% endcomment %}
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <span class="navbar-brand">
+                <a href="/">                
+                    <i class="fas fa-hotel"></i>
+                </a>
+            </span>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Rooms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+
+
+    {% comment %} Footer {% endcomment %}
+    <footer class="text-center text-lg-start">
+        <div class="text-center p-3">
+            © Fancy Hotels 2023 
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Reservation Confirmation</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Thank you for your reservation!</h5>
+            <p class="card-text">Here are the details of your reservation:</p>
+            <ul>
+                <li>Reservation Number: {{ reservation.reservation_no }}</li>
+                <li>Room Type: {{ reservation.room.type }}</li>
+                <li>Price per Night: ${{ reservation.room.price }}</li>
+                <li>Max Guests: {{ reservation.room.max_guests }}</li>
+                <li>Check-in Date: {{ reservation.checkin_date|date:"Y-m-d" }}</li>
+                <li>Check-out Date: {{ reservation.checkout_date|date:"Y-m-d" }}</li>
+                <li>Guest Name: {{ reservation.customer.firstname }} {{ reservation.customer.lastname }}</li>
+                <li>Email: {{ reservation.customer.email }}</li>
+                <li>Phone: {{ reservation.customer.phone }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
